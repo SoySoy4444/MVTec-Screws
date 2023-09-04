@@ -44,24 +44,27 @@ plt.show()
 
 # -----------
 
-BATCH_SIZE = 30
+BATCH_SIZE = 10
 
 model = Sequential()
 # model.add(Rescaling(scale=1./255))
-model.add(Conv2D(64, kernel_size=(3, 3), activation="relu", input_shape=(224, 224, 1), padding="same"))
+model.add(Conv2D(32, kernel_size=(3, 3), activation="relu", input_shape=(224, 224, 1), padding="same"))
 
-model.add(Conv2D(32, (3, 3), activation="relu", padding="same"))
+model.add(Conv2D(64, (3, 3), activation="relu", padding="same"))
 model.add(MaxPool2D(pool_size=(2, 2)))
 model.add(Dropout(0.25))
 
 model.add(Flatten())
-model.add(Dense(32, activation="relu"))
+model.add(Dense(64, activation="relu"))
 model.add(Dropout(0.25))
 model.add(Dense(1, activation="sigmoid"))
 
-model.compile(loss=binary_crossentropy, optimizer=SGD(learning_rate=0.0002), metrics=["accuracy"])
-print(model.summary())
+model.compile(loss=binary_crossentropy, optimizer=SGD(learning_rate=0.0001), metrics=["accuracy"])
 
+model.summary()
+
+print(len(train_ds))
+print(len(val_ds))
 
 # plot_model(model, show_shapes=True)
 
