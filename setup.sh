@@ -1,3 +1,3 @@
 #!/bin/bash
-pip3 install gdown
+pip install -r requirements.txt
 python setup.py
