@@ -18,6 +18,7 @@ import visualkeras
 import zipfile
 
 np.random.seed(42)
+random.seed(42)
 BATCH_SIZE = 20
 # MODE can be "augmented", "preprocessed" or "archive"
 MODE = "augmented"
