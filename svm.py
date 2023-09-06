@@ -1,6 +1,6 @@
 from skimage.transform import resize
 from skimage.io import imread
-from sklearn import svm
+from sklearn.svm import SVC
 from sklearn.model_selection import GridSearchCV, train_test_split
 from sklearn.metrics import accuracy_score, classification_report, \
     confusion_matrix, ConfusionMatrixDisplay
@@ -42,15 +42,14 @@ param_grid = {"C" : [0.001, 0.1, 1, 10, 100],
             "kernel" : ["rbf", "sigmoid"], # rbf or sigmoid good for images
             "verbose" : [True]} 
 
-svc = svm.SVC(probability=False)  # probability=True is too slow
+svc = SVC(probability=False)  # probability=True is too slow
 model = GridSearchCV(svc, param_grid)  # Hyperparameter tuning with GridSearch
-
 
 print("Beginning training...")
 model.fit(x_train,y_train)
 
 print("Training finished")
-print(f"Best indicator was {model.best_estimator_} with the parameters {model.best_params_} with a score of {model.best_score_}")
+print(f"Best kernel was {model.best_params_['kernel']} with the parameters {model.best_estimator_} with a score of {model.best_score_}")
 
 y_pred = model.predict(x_test)
 
