@@ -5,3 +5,4 @@ archive/
 *.png
 *.txt
 *.keras
+__pycache__/
